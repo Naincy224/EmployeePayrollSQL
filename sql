@@ -34,3 +34,25 @@ mysql> describe employee_pay_roll;
 | startDate | date         | YES  |     | NULL    |                |
 +-----------+--------------+------+-----+---------+----------------+
 4 rows in set (0.01 sec)
+mysql> insert into employee_pay_roll(name, salary,startDate)
+    -> values('aman',50000,'2020-01-01'),
+    -> ('atul',40000,'2021-01-01'),
+    -> ('akshat',20000,'2019-01-01'),
+    -> ('naincy',20000,'2020-01-01'),
+    -> ('shristy',40000,'2021-01-01');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_pay_roll;
++----+---------+--------+------------+
+| id | name    | salary | startDate  |
++----+---------+--------+------------+
+|  1 | aman    |  50000 | 2020-01-01 |
+|  2 | atul    |  40000 | 2021-01-01 |
+|  3 | akshat  |  20000 | 2019-01-01 |
+|  4 | naincy  |  20000 | 2020-01-01 |
+|  5 | shristy |  40000 | 2021-01-01 |
++----+---------+--------+------------+
+5 rows in set (0.00 sec)
+
+
