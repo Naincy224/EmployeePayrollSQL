@@ -55,4 +55,80 @@ mysql> select * from employee_pay_roll;
 +----+---------+--------+------------+
 5 rows in set (0.00 sec)
 
+mysql> select * from employee_pay_roll where salary='20000';
++----+--------+--------+------------+
+| id | name   | salary | startDate  |
++----+--------+--------+------------+
+|  3 | akshat |  20000 | 2019-01-01 |
+|  4 | naincy |  20000 | 2020-01-01 |
++----+--------+--------+------------+
+2 rows in set (0.00 sec)
+mysql> select * from employee_pay_roll where startDate between cast('2020-01-01'as date)and date(now());
++----+---------+--------+------------+
+| id | name    | salary | startDate  |
++----+---------+--------+------------+
+|  1 | aman    |  50000 | 2020-01-01 |
+|  2 | atul    |  40000 | 2021-01-01 |
+|  4 | naincy  |  20000 | 2020-01-01 |
+|  5 | shristy |  40000 | 2021-01-01 |
++----+---------+--------+------------+
+4 rows in set (0.00 sec)
 
+mysql> alter table employee_pay_roll add gender char(2)after name;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_pay_roll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | startDate  |
++----+---------+--------+--------+------------+
+|  1 | aman    | NULL   |  50000 | 2020-01-01 |
+|  2 | atul    | NULL   |  40000 | 2021-01-01 |
+|  3 | akshat  | NULL   |  20000 | 2019-01-01 |
+|  4 | naincy  | NULL   |  20000 | 2020-01-01 |
+|  5 | shristy | NULL   |  40000 | 2021-01-01 |
++----+---------+--------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee_pay_roll set gender = 'M' where name = 'atul';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_pay_roll set gender = 'M' where name = 'akshat';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_pay_roll set gender = 'F' where name = 'naincy';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_pay_roll set gender = 'F' where name = 'shristy';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_pay_roll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | startDate  |
++----+---------+--------+--------+------------+
+|  1 | aman    | M      |  50000 | 2020-01-01 |
+|  2 | atul    | M      |  40000 | 2021-01-01 |
+|  3 | akshat  | M      |  20000 | 2019-01-01 |
+|  4 | naincy  | F      |  20000 | 2020-01-01 |
+|  5 | shristy | F      |  40000 | 2021-01-01 |
++----+---------+--------+--------+------------+
+5 rows in set (0.00 sec)
+mysql> select sum(salary) from employee_pay_roll where gender = 'F' group by gender;
++-------------+
+| sum(salary) |
++-------------+
+|       60000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee_pay_roll where gender = 'F';
++-------------+
+| sum(salary) |
++-------------+
+|       60000 |
++-------------+
+1 row in set (0.00 sec)
